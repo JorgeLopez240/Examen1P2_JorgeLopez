@@ -7,17 +7,15 @@ public class Personaje {
     private int vida;
     private int escudo;
     private String arma;
-    private String tipo;
 
     public Personaje() {
     }
 
-    public Personaje(String nombre, int vida, int escudo, String arma, String tipo) {
+    public Personaje(String nombre, int vida, int escudo, String arma) {
         this.nombre = nombre;
         this.vida = vida;
         this.escudo = escudo;
         this.arma = arma;
-        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -52,17 +50,9 @@ public class Personaje {
         this.arma = arma;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     @Override
     public String toString() {
-        return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo + ", arma=" + arma + ", tipo=" + tipo + '}';
+        return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo + ", arma=" + arma + ", tipo=" +'}';
     }
     
     
