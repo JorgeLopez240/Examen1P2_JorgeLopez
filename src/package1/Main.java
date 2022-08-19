@@ -19,6 +19,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Frame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -26,6 +27,17 @@ public class Main extends javax.swing.JFrame {
         tf_user = new javax.swing.JTextField();
         tf_contra = new javax.swing.JTextField();
         bt_ingresar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout Frame1Layout = new javax.swing.GroupLayout(Frame1.getContentPane());
+        Frame1.getContentPane().setLayout(Frame1Layout);
+        Frame1Layout.setHorizontalGroup(
+            Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        Frame1Layout.setVerticalGroup(
+            Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -38,6 +50,11 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         bt_ingresar.setText("Ingresar");
+        bt_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_ingresarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,7 +91,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(tf_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(bt_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +107,15 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ingresarMouseClicked
+        String user = tf_user.getText();
+        String pass = tf_contra.getText();
+        Frame1.setLocationRelativeTo(null);
+        Frame1.setAlwaysOnTop(true);
+        Frame1.pack();
+        Frame1.setVisible(true);
+    }//GEN-LAST:event_bt_ingresarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -127,6 +153,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame Frame1;
     private javax.swing.JButton bt_ingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
