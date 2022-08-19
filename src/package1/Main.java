@@ -2,6 +2,7 @@
 package package1;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -16,10 +17,14 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         
+        jugadores.add(new Jugador("Lechuga",543, "contraseña", new Medico("LifeLine", 100, 50, new Arma("FlatLine", 10, 80))));
+        jugadores.add(new Jugador("Loco Bryan", 23, "contraseña", new Rastreador("Vantage", 100, 50, new Arma("PeaceFinder", 15, 40))));
+        jugadores.add(new Jugador("Dr. Nuila", 2, "contrasena", new Fortaleza("Gibby", 125, 75, new Arma("Carabina", 30, 40))));
+        
         DefaultComboBoxModel dc= (DefaultComboBoxModel) cb_personajes.getModel();
-        dc.addElement(new Personaje("LifeLine", 100, 50, new Arma("FlatLine", 10,80)));
-        dc.addElement(new Personaje("Vantage", 100, 50, new Arma("PeaceFinder", 15,90)));
-        dc.addElement(new Personaje("Gibby", 120, 75, new Arma("Carabina", 30,40)));
+        dc.addElement(jugadores.get(0).getPersonaje());
+        dc.addElement(jugadores.get(1).getPersonaje());
+        dc.addElement(jugadores.get(2).getPersonaje());
         cb_personajes.setModel(dc);
         
         DefaultComboBoxModel dc1= (DefaultComboBoxModel) cb_tipo.getModel();
@@ -52,7 +57,7 @@ public class Main extends javax.swing.JFrame {
         cb_personajes = new javax.swing.JComboBox<>();
         bt_seleccionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bt_comenzar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -60,11 +65,11 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tf_nombrePer = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tf_escudoPer = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        tf_vida = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         cb_tipo = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -118,7 +123,12 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Seleccionar", jPanel2);
 
-        jButton1.setText("Comenzar");
+        bt_comenzar.setText("Comenzar");
+        bt_comenzar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_comenzarMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Restantes:  ");
@@ -137,7 +147,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(bt_comenzar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(111, 111, 111))
@@ -155,7 +165,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(bt_comenzar)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,6 +191,11 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setText("Arma");
 
         jButton3.setText("Crear Personaje");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Crear Arma");
@@ -209,15 +224,20 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
-                        .addGap(62, 62, 62)
+                            .addComponent(tf_nombrePer)
+                            .addComponent(tf_escudoPer, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(cb_arma, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(tf_vida, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addGap(84, 84, 84))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_arma, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton3)
                             .addComponent(jLabel9)
@@ -235,8 +255,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_nombrePer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_vida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -244,7 +264,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_escudoPer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_arma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(45, 45, 45)
@@ -356,7 +376,7 @@ public class Main extends javax.swing.JFrame {
         String user = tf_user.getText();
         String pass = tf_contra.getText();
         int id = idRandom();
-        jugadores.add(new Jugador(user, id, pass, new Personaje()));
+        jugadores.add(new Jugador(user, id, pass));
         //JOptionPane.showMessageDialog(this, "Se ha registrado!");
         Frame1.setLocationRelativeTo(null);
         Frame1.setAlwaysOnTop(true);
@@ -364,9 +384,36 @@ public class Main extends javax.swing.JFrame {
         Frame1.setVisible(true);
     }//GEN-LAST:event_bt_ingresarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void bt_comenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_comenzarMouseClicked
+       Date inicio = new Date();
+       int seg = inicio.getSeconds();
+    }//GEN-LAST:event_bt_comenzarMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        String nombre = tf_nombrePer.getText();
+        int vida = Integer.parseInt(tf_vida.getText());
+        int escudo =Integer.parseInt(tf_escudoPer.getText());
+        Arma arma = (Arma)cb_arma.getSelectedItem();
+        Personaje personaje;
+        if(cb_tipo.getSelectedItem().equals("Fortaleza")){
+            personaje = new Fortaleza();
+        } else if(cb_tipo.getSelectedItem().equals("Medico")){
+            personaje = new Medico();
+        } else{
+            personaje = new Rastreador();
+        }
+        DefaultComboBoxModel dc= (DefaultComboBoxModel) cb_personajes.getModel();
+        if(personaje instanceof Fortaleza){
+            dc.addElement(new Fortaleza(nombre, vida, escudo, arma));
+        } else if(personaje instanceof Medico){
+            dc.addElement(new Medico(nombre, vida, escudo, arma));
+        } else if(personaje instanceof Rastreador){
+            dc.addElement(new Rastreador(nombre, vida, escudo, arma));
+        }
+        
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -401,12 +448,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame Frame1;
+    private javax.swing.JButton bt_comenzar;
     private javax.swing.JButton bt_ingresar;
     private javax.swing.JButton bt_seleccionar;
     private javax.swing.JComboBox<String> cb_arma;
     private javax.swing.JComboBox<String> cb_personajes;
     private javax.swing.JComboBox<String> cb_tipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -431,16 +478,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField tf_contra;
+    private javax.swing.JTextField tf_escudoPer;
+    private javax.swing.JTextField tf_nombrePer;
     private javax.swing.JTextField tf_user;
+    private javax.swing.JTextField tf_vida;
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Jugador> jugadores=new ArrayList(); 
+  
     ArrayList<Integer> ids = new ArrayList();
     
 }

@@ -1,11 +1,11 @@
 
 package package1;
 
-public class Personaje {
+public abstract class Personaje {
     
     private String nombre; 
-    private int vida;
-    private int escudo;
+    protected int vida;
+    protected int escudo;
     private Arma arma;
 
     public Personaje() {
@@ -55,6 +55,6 @@ public class Personaje {
         return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo +'}';
     }
     
-    
+    public abstract void defensa();
     
 }
