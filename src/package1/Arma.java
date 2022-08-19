@@ -5,25 +5,30 @@ import java.util.Random;
 
 public class Arma {
 
-    Random r = new Random();
+    //Random r = new Random();
     
     private String nombre;
     private int daño;
-    private int precision=r.nextInt(100);
+    private int precision;//=r.nextInt(100);
 
     public Arma() {
     }
 
-    public Arma(String nombre, int daño) {
+    public Arma(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public Arma(String nombre, int daño, int presicion) {
         this.nombre = nombre;
         this.daño = daño;
+        this.precision=presicion;
     }
 
-    public String getArma() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setArma(String arma) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -45,7 +50,7 @@ public class Arma {
 
     @Override
     public String toString() {
-        return "Arma{" + "nombre=" + nombre + ", da\u00f1o=" + daño + ", precision=" + precision + '}';
+        return nombre;
     }
     
     

@@ -52,7 +52,7 @@ public class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo + ", arma=" + arma + ", tipo=" +'}';
+        return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo +'}';
     }
     
     
