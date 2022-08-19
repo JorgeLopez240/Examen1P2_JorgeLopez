@@ -1,13 +1,27 @@
 
 package package1;
 
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 public class Main extends javax.swing.JFrame {
 
+    Random r = new Random();
+    
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        
+        DefaultComboBoxModel dc=
+                    (DefaultComboBoxModel) cb_personajes.getModel();
+        dc.addElement(new Personaje("LifeLine", 100, 50, new Arma("FlatLine", 10)));
+        dc.addElement(new Personaje("Vantage", 100, 50, new Arma("PeaceFinder", 15)));
+        dc.addElement(new Personaje("Gibby", 120, 75, new Arma("Carabina", 30)));
+        
     }
 
     /**
@@ -23,7 +37,7 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        cb_personaje = new javax.swing.JComboBox<>();
+        cb_personajes = new javax.swing.JComboBox<>();
         bt_seleccionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -74,7 +88,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bt_seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(jLabel4)
-                    .addComponent(cb_personaje, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cb_personajes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(410, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -83,7 +97,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(cb_personaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_personajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(bt_seleccionar)
                 .addContainerGap(235, Short.MAX_VALUE))
@@ -317,9 +331,20 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int idRandom(){
+        int id=1+r.nextInt(999);
+        while(ids.contains(id)){
+            id=1+r.nextInt(999);
+        }
+        return id;
+    }
+    
     private void bt_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ingresarMouseClicked
         String user = tf_user.getText();
         String pass = tf_contra.getText();
+        int id = idRandom();
+        jugadores.add(new Jugador(user, id, pass, new Personaje()));
+        JOptionPane.showMessageDialog(this, "Se ha registrado!");
         Frame1.setLocationRelativeTo(null);
         Frame1.setAlwaysOnTop(true);
         Frame1.pack();
@@ -365,7 +390,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFrame Frame1;
     private javax.swing.JButton bt_ingresar;
     private javax.swing.JButton bt_seleccionar;
-    private javax.swing.JComboBox<String> cb_personaje;
+    private javax.swing.JComboBox<String> cb_personajes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -401,4 +426,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
+
+    ArrayList<Jugador> jugadores=new ArrayList(); 
+    ArrayList<Integer> ids = new ArrayList();
+    
 }

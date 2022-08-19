@@ -41,7 +41,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="bt_seleccionar" pref="160" max="32767" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="cb_personaje" max="32767" attributes="0"/>
+                              <Component id="cb_personajes" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="410" max="32767" attributes="0"/>
                       </Group>
@@ -53,7 +53,7 @@
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="cb_personaje" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_personajes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="bt_seleccionar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="235" max="32767" attributes="0"/>
@@ -70,7 +70,7 @@
                     <Property name="text" type="java.lang.String" value="Seleccionar Personaje"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cb_personaje">
+                <Component class="javax.swing.JComboBox" name="cb_personajes">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>

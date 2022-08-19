@@ -7,7 +7,7 @@ public class Fortaleza extends Personaje{
         super();
     }
 
-    public Fortaleza(String nombre, int vida, int escudo, String arma) {
+    public Fortaleza(String nombre, int vida, int escudo, Arma arma) {
         super(nombre, vida, escudo, arma);
     }
     

@@ -6,12 +6,12 @@ public class Personaje {
     private String nombre; 
     private int vida;
     private int escudo;
-    private String arma;
+    private Arma arma;
 
     public Personaje() {
     }
 
-    public Personaje(String nombre, int vida, int escudo, String arma) {
+    public Personaje(String nombre, int vida, int escudo, Arma arma) {
         this.nombre = nombre;
         this.vida = vida;
         this.escudo = escudo;
@@ -42,11 +42,11 @@ public class Personaje {
         this.escudo = escudo;
     }
 
-    public String getArma() {
+    public Arma getArma() {
         return arma;
     }
 
-    public void setArma(String arma) {
+    public void setArma(Arma arma) {
         this.arma = arma;
     }
 

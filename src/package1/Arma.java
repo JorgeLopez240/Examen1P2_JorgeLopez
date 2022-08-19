@@ -7,24 +7,24 @@ public class Arma {
 
     Random r = new Random();
     
-    private String arma;
+    private String nombre;
     private int daño;
     private int precision=r.nextInt(100);
 
     public Arma() {
     }
 
-    public Arma(String arma, int daño) {
-        this.arma = arma;
+    public Arma(String nombre, int daño) {
+        this.nombre = nombre;
         this.daño = daño;
     }
 
     public String getArma() {
-        return arma;
+        return nombre;
     }
 
     public void setArma(String arma) {
-        this.arma = arma;
+        this.nombre = nombre;
     }
 
     public int getDaño() {
@@ -45,7 +45,7 @@ public class Arma {
 
     @Override
     public String toString() {
-        return "Arma{" + "arma=" + arma + ", da\u00f1o=" + daño + ", precision=" + precision + '}';
+        return "Arma{" + "nombre=" + nombre + ", da\u00f1o=" + daño + ", precision=" + precision + '}';
     }
     
     
