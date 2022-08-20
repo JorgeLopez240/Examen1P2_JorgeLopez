@@ -450,7 +450,7 @@ public class Main extends javax.swing.JFrame {
        }
        ta_jugadores.setText("");
         for (Jugador e : jugadores) {
-            ta_jugadores.append(e.toString()+"\n");;
+            ta_jugadores.append(e.toString()+"\n");
         }
     }//GEN-LAST:event_bt_comenzarMouseClicked
 
@@ -500,11 +500,33 @@ public class Main extends javax.swing.JFrame {
         jugadores.get(3).setPersonaje(p);
     }//GEN-LAST:event_bt_seleccionarMouseClicked
 
-    
-    
+    public int binary(int id, int m, int y, int z){
+        m=(y+z)/2;
+        if(id==ids.get(m)){
+            return ids.get(m);
+        } else {
+            if(ids.get(m)>id){
+                z=m-1;
+                return binary(id, m, y, z);
+            } else{
+                y=m+1;
+                return binary(id, m, y, z);
+            }
+        }
+    }
+        
     private void tf_idAtacarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_idAtacarMouseClicked
         Collections.sort(ids);
-        
+        int id2= Integer.parseInt(tf_idAtacar.getText());
+        int id = binary(id2, 0, 0, ids.size()-1);
+        Jugador jg = new Jugador();
+        for (Jugador j : jugadores) {
+            if(j.getId()==id){
+                jg =j;
+                jg.getPersonaje().setVida(jg.getPersonaje().getVida()-jugadores.get(3).getPersonaje().getArma().getDaño());
+            }
+        }
+        ta_jugadores.append(jugadores.get(4).getUsuario()+"--->"+jg.getUsuario()+"\n");
     }//GEN-LAST:event_tf_idAtacarMouseClicked
 
     public static void main(String args[]) {
