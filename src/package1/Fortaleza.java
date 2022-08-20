@@ -18,4 +18,5 @@ public class Fortaleza extends Personaje{
         }
     }
     
+    
 }

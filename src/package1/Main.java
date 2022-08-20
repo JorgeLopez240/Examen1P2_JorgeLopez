@@ -60,7 +60,7 @@ public class Main extends javax.swing.JFrame {
         bt_comenzar = new javax.swing.JButton();
         label_Restantes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_jugadores = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         bt_atacar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -135,9 +135,9 @@ public class Main extends javax.swing.JFrame {
         label_Restantes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Restantes.setText("Restantes:  ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ta_jugadores.setColumns(20);
+        ta_jugadores.setRows(5);
+        jScrollPane1.setViewportView(ta_jugadores);
 
         bt_atacar.setText("Atacar");
 
@@ -396,9 +396,32 @@ public class Main extends javax.swing.JFrame {
         Frame1.setVisible(true);
     }//GEN-LAST:event_bt_ingresarMouseClicked
 
+    public String randomizerCad(){
+        String cad="";
+        int a=10;
+        while(a>0){
+            int num = 97+r.nextInt(25);
+            cad += (char)num;
+            a--;
+        }
+        return cad;
+    }
+    
     private void bt_comenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_comenzarMouseClicked
        Date inicio = new Date();
        int seg = inicio.getSeconds();
+       int x=60;
+       Personaje tipo;
+       DefaultComboBoxModel dc1 = (DefaultComboBoxModel) cb_tipo.getModel();
+       while(x>0){
+           int r1= 1+r.nextInt(dc1.getSize());
+           tipo = (Personaje)dc1.getElementAt(r1);
+           jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+           x--;
+       }
+        for (Jugador e : jugadores) {
+            ta_jugadores.append(e.toString()+"\n");;
+        }
     }//GEN-LAST:event_bt_comenzarMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -504,9 +527,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_Restantes;
+    private javax.swing.JTextArea ta_jugadores;
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_daño;
     private javax.swing.JTextField tf_escudoPer;
