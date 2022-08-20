@@ -18,10 +18,10 @@ public class Medico extends Personaje{
     }
 
     @Override
-    public void defensa() {
-        int ran =1+r.nextInt(10);
-        int p= (ran*super.vida)/100;
-        super.vida+=p;
+    public void ataque(Personaje personaje) {
+        if(personaje instanceof Rastreador){
+            super.arma.setDaño(super.arma.getDaño()+(5*super.arma.getDaño())/100);
+        }
     }
     
 }

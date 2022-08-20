@@ -12,10 +12,10 @@ public class Rastreador extends Personaje{
     }
 
     @Override
-    public void defensa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ataque(Personaje personaje) {
+        if(personaje instanceof Fortaleza || personaje instanceof Medico){
+            super.arma.setDaño(super.arma.getDaño()+(10*super.arma.getDaño())/100);
+        }
     }
 
-    
-    
 }

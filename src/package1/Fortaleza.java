@@ -12,9 +12,10 @@ public class Fortaleza extends Personaje{
     }
 
     @Override
-    public void defensa() {
-        int p = (15*super.vida)/100;
-        super.vida+=p;
+    public void ataque(Personaje personaje) {
+        if(personaje instanceof Medico){
+            super.arma.setDaño(super.arma.getDaño()+(10*super.arma.getDaño())/100);
+        }
     }
     
 }

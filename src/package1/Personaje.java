@@ -6,7 +6,7 @@ public abstract class Personaje {
     private String nombre; 
     protected int vida;
     protected int escudo;
-    private Arma arma;
+    protected Arma arma;
 
     public Personaje() {
     }
@@ -55,6 +55,6 @@ public abstract class Personaje {
         return "Personaje{" + "nombre=" + nombre + ", vida=" + vida + ", escudo=" + escudo +'}';
     }
     
-    public abstract void defensa();
+    public abstract void ataque(Personaje personaje);
     
 }
