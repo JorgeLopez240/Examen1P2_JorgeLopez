@@ -422,7 +422,10 @@ public class Main extends javax.swing.JFrame {
         } else if(personaje instanceof Rastreador){
             dc.addElement(new Rastreador(nombre, vida, escudo, arma));
         }
-        
+        JOptionPane.showMessageDialog(Frame1, "Personaje creado exitosamente!");
+        tf_nombrePer.setText("");
+        tf_vida.setText("");
+        tf_escudoPer.setText("");
         
     }//GEN-LAST:event_jButton3MouseClicked
 
