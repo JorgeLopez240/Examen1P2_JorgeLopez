@@ -18,4 +18,8 @@ public class Rastreador extends Personaje{
         }
     }
 
+    
+
+    
+    
 }

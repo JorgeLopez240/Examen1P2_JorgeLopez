@@ -98,6 +98,11 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setText("Seleccionar Personaje");
 
         bt_seleccionar.setText("Seleccionar");
+        bt_seleccionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_seleccionarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -412,13 +417,26 @@ public class Main extends javax.swing.JFrame {
        int seg = inicio.getSeconds();
        int x=60;
        Personaje tipo;
+       //Object r;
+       //tipo = (Personaje)r;
        DefaultComboBoxModel dc1 = (DefaultComboBoxModel) cb_tipo.getModel();
        while(x>0){
-           int r1= 1+r.nextInt(dc1.getSize());
-           tipo = (Personaje)dc1.getElementAt(r1);
-           jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+           int r1= r.nextInt(dc1.getSize()-1);
+           if(dc1.getElementAt(r1).equals("Fortaleza")){
+                tipo = jugadores.get(r1).getPersonaje();
+                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+           } else if(dc1.getElementAt(r1).equals("Medico")){
+               tipo =jugadores.get(r1).getPersonaje();
+                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+           } else if(dc1.getElementAt(r1).equals("Rastreador")){
+               tipo =jugadores.get(r1).getPersonaje();
+                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+           }
+           
+           
            x--;
        }
+       ta_jugadores.setText("");
         for (Jugador e : jugadores) {
             ta_jugadores.append(e.toString()+"\n");;
         }
@@ -464,6 +482,11 @@ public class Main extends javax.swing.JFrame {
         tf_daño.setText("");
         tf_presicion.setText("");
     }//GEN-LAST:event_bt_crearArmaMouseClicked
+
+    private void bt_seleccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_seleccionarMouseClicked
+        Personaje p = (Personaje)cb_personajes.getSelectedItem();
+        jugadores.get(3).setPersonaje(p);
+    }//GEN-LAST:event_bt_seleccionarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

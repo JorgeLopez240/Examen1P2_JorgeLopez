@@ -23,5 +23,9 @@ public class Medico extends Personaje{
             super.arma.setDaño(super.arma.getDaño()+(5*super.arma.getDaño())/100);
         }
     }
+
+    
+    
+    
     
 }

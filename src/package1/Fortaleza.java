@@ -17,6 +17,9 @@ public class Fortaleza extends Personaje{
             super.arma.setDaño(super.arma.getDaño()+(10*super.arma.getDaño())/100);
         }
     }
+
+   
+    
     
     
 }
