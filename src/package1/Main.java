@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.util.Collections;
 
 public class Main extends javax.swing.JFrame {
 
@@ -20,6 +21,9 @@ public class Main extends javax.swing.JFrame {
         jugadores.add(new Jugador("Lechuga",543, "contraseña", new Medico("LifeLine", 100, 50, new Arma("FlatLine", 10, 80))));
         jugadores.add(new Jugador("Loco Bryan", 23, "contraseña", new Rastreador("Vantage", 100, 50, new Arma("PeaceFinder", 15, 40))));
         jugadores.add(new Jugador("Dr. Nuila", 2, "contrasena", new Fortaleza("Gibby", 125, 75, new Arma("Carabina", 30, 40))));
+        ids.add(jugadores.get(0).getId());
+        ids.add(jugadores.get(1).getId());
+        ids.add(jugadores.get(2).getId());
         
         DefaultComboBoxModel dc= (DefaultComboBoxModel) cb_personajes.getModel();
         dc.addElement(jugadores.get(0).getPersonaje());
@@ -61,7 +65,7 @@ public class Main extends javax.swing.JFrame {
         label_Restantes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_jugadores = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        tf_idAtacar = new javax.swing.JTextField();
         bt_atacar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -144,6 +148,12 @@ public class Main extends javax.swing.JFrame {
         ta_jugadores.setRows(5);
         jScrollPane1.setViewportView(ta_jugadores);
 
+        tf_idAtacar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_idAtacarMouseClicked(evt);
+            }
+        });
+
         bt_atacar.setText("Atacar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -162,7 +172,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_idAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addComponent(bt_atacar)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -178,7 +188,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_idAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_atacar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -394,6 +404,7 @@ public class Main extends javax.swing.JFrame {
         String pass = tf_contra.getText();
         int id = idRandom();
         jugadores.add(new Jugador(user, id, pass));
+        ids.add(id);
         //JOptionPane.showMessageDialog(this, "Se ha registrado!");
         Frame1.setLocationRelativeTo(null);
         Frame1.setAlwaysOnTop(true);
@@ -421,18 +432,19 @@ public class Main extends javax.swing.JFrame {
        //tipo = (Personaje)r;
        DefaultComboBoxModel dc1 = (DefaultComboBoxModel) cb_tipo.getModel();
        while(x>0){
+           int id = idRandom();
            int r1= r.nextInt(dc1.getSize()-1);
            if(dc1.getElementAt(r1).equals("Fortaleza")){
                 tipo = jugadores.get(r1).getPersonaje();
-                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+                jugadores.add(new Jugador(randomizerCad(), id, randomizerCad(), tipo));
            } else if(dc1.getElementAt(r1).equals("Medico")){
                tipo =jugadores.get(r1).getPersonaje();
-                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+                jugadores.add(new Jugador(randomizerCad(), id, randomizerCad(), tipo));
            } else if(dc1.getElementAt(r1).equals("Rastreador")){
                tipo =jugadores.get(r1).getPersonaje();
-                jugadores.add(new Jugador(randomizerCad(), idRandom(), randomizerCad(), tipo));
+                jugadores.add(new Jugador(randomizerCad(), id, randomizerCad(), tipo));
            }
-           
+           ids.add(id);
            
            x--;
        }
@@ -487,6 +499,13 @@ public class Main extends javax.swing.JFrame {
         Personaje p = (Personaje)cb_personajes.getSelectedItem();
         jugadores.get(3).setPersonaje(p);
     }//GEN-LAST:event_bt_seleccionarMouseClicked
+
+    
+    
+    private void tf_idAtacarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_idAtacarMouseClicked
+        Collections.sort(ids);
+        
+    }//GEN-LAST:event_tf_idAtacarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -550,12 +569,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_Restantes;
     private javax.swing.JTextArea ta_jugadores;
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_daño;
     private javax.swing.JTextField tf_escudoPer;
+    private javax.swing.JTextField tf_idAtacar;
     private javax.swing.JTextField tf_nombreArma;
     private javax.swing.JTextField tf_nombrePer;
     private javax.swing.JTextField tf_presicion;
